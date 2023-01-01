@@ -7,7 +7,10 @@ type TokenOptions = { authCode: string; redirectUri: string }
 export type Token = { "token_type": string, "expires_in": number, "access_token": string, "scope": string }
 
 export const clientId = 'WWVNb0F2Vk5vSTNILXFfOXVrNWM6MTpjaQ';
-export const authorize = ({ redirectUri = 'http://localhost:5173/api/auth/twitter/callback' }: AuthorizeOptions = {}) => {
+const REDIRECT_URI = import.meta.env.TWITTER_CALLBACK_REDIRECT_URI;
+
+
+export const authorize = ({ redirectUri = REDIRECT_URI }: AuthorizeOptions = {}) => {
     const scopes = ['tweet.read', 'tweet.write', 'follows.write', 'like.write', 'users.read'];
     const oAuthPopup = window.open(`https://twitter.com/i/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&state=state&code_challenge=challenge&code_challenge_method=plain`, '_blank');
     return new Promise((resolve, reject) => {

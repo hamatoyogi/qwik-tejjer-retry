@@ -4,6 +4,7 @@ import { RequestHandler } from '@builder.io/qwik-city';
 import { Button } from '~/components/Button';
 import { Logo } from '~/components/Logo';
 import { getToken } from '~/util/oauth';
+const REDIRECT_URI = import.meta.env.TWITTER_CALLBACK_REDIRECT_URI;
 
 export default component$(() => {
   /** @todo error handling */
@@ -25,8 +26,7 @@ export default component$(() => {
 
 export const onGet: RequestHandler = async ({ url, cookie }) => {
   const authCode = url.searchParams.get('code')!;
-  const redirectUri = 'http://localhost:5173/api/auth/twitter/callback';
-
+  const redirectUri = REDIRECT_URI;
   try {
     const token = await getToken({ authCode, redirectUri });
 
