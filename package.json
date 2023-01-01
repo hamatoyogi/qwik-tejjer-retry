@@ -44,7 +44,6 @@
   },
   "dependencies": {
     "clsx": "^1.2.1",
-    "form-data": "^4.0.0",
-    "isomorphic-fetch": "^3.0.0"
+    "form-data": "^4.0.0"
   }
 }
